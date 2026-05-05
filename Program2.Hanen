@@ -1,0 +1,33 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] data = {
+            115, 182, 191, 31, 196, 1099, 5, 172, 10, 179,
+            83, 21, 20, 21, 186, 177, 195, 193, 188, 199,
+            62, 109, 105, 183, 110
+        };
+
+        Array.Sort(data);
+        int n = data.Length;
+
+        double Q1 = data[n / 4];
+        double Q3 = data[(3 * n) / 4];
+        double IQR = Q3 - Q1;
+
+        double lower = Q1 - 1.5 * IQR;
+        double upper = Q3 + 1.5 * IQR;
+
+        Console.WriteLine("Outliers:");
+
+        foreach (int x in data)
+        {
+            if (x < lower || x > upper)
+            {
+                Console.WriteLine(x);
+            }
+        }
+    }
+}
